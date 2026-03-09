@@ -13,33 +13,34 @@
 
     <script type="text/babel">
 
-     function LoginForm(){
-      return (
+     function ProductDetails({name , price , discountPrice, imageSrc}){
+       return( 
+      <>
+        <img src={imageSrc} width="200" height="200"/>
+        <p>{name}</p>
+        {discountPrice ? (
           <>
-
-          
-          <div>
-          <input placeholder="Email"/>
-          </div>
-          <div>
-          <input placeholder="Password" type="password" />
-          </div>
-          <button>Login</button>
-          <button>Sign up</button>
+          <del><p>price :${price}</p></del>
+          <p>discount price : ${discountPrice}</p>
           </>
+        ) : ( 
+          <p>price : ${price}</p>
+        )}
+        <button>Add to Cart</button>
+      </>
+     );
+     }
+    
+
+     function App(){
+      return(
+       <>
+         <ProductDetails name="Cotton socks" price="10.90" discountPrice="5.45" imageSrc="cotton-socks.png" />
+         <ProductDetails name="Tennis balls" price="15.50" imageSrc="tennis-balls.png" />
+         <ProductDetails name="Plain T-shirt" price="20.00" imageSrc="plain-t-shirt.png" />
+       </>
       )
      }
-
-
-
-      function App(){
-        return(
-          <>
-          <p>hello,welcome to my website</p>
-          <LoginForm />
-          </>
-        );
-      }
 
       const container = document.querySelector('.js-container');
       ReactDOM.createRoot(container).render(<App />);
