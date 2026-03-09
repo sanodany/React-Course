@@ -12,24 +12,37 @@
     <script src="https://unpkg.com/supersimpledev/dayjs.js"></script>
 
     <script type="text/babel">
-      const container = document.querySelector('.js-container');
-      const root = ReactDOM.createRoot(container);
 
-      function App() {
-        return (
+     function LoginForm(){
+      return (
+          <>
+
+          
           <div>
-            <h1>React Basics</h1>
-            <p>Current Time: {dayjs().format('HH:mm:ss')}</p>
+          <input placeholder="Email"/>
           </div>
+          <div>
+          <input placeholder="Password" type="password" />
+          </div>
+          <button>Login</button>
+          <button>Sign up</button>
+          </>
+      )
+     }
+
+
+
+      function App(){
+        return(
+          <>
+          <p>hello,welcome to my website</p>
+          <LoginForm />
+          </>
         );
       }
 
-      function renderApp() {
-        root.render(<App />);
-      }
-
-      renderApp();
-      setInterval(renderApp, 1000);
+      const container = document.querySelector('.js-container');
+      ReactDOM.createRoot(container).render(<App />);
     </script>
   </body>
 </html>
