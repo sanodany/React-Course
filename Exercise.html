@@ -13,37 +13,49 @@
 
     <script type="text/babel">
 
-     function ProductDetails({name , price , discountPrice, imageSrc}){
-       return( 
-      <>
-        <img src={imageSrc} width="200" height="200"/>
-        <p>{name}</p>
-        {discountPrice ? (
-          <>
-          <del><p>price :${price}</p></del>
-          <p>discount price : ${discountPrice}</p>
-          </>
-        ) : ( 
-          <p>price : ${price}</p>
-        )}
-        <button>Add to Cart</button>
-      </>
-     );
-     }
-    
+     function CounterButton({ count, setCount }){
+        function ClickedButton(){
+        console.log("clicked!");
+        setCount(
+        count + 1
+        );  
+      }
+     
 
-     function App(){
+       return (
+        <button onClick={ClickedButton}>
+          Clicked {count} { count > 0 ? "time":"times"}
+        </button>
+       )
+     }
+
+     function ResetButton({ setCount }){
+      function resetCount(){
+        setCount(0
+        );
+      }
       return(
-       <>
-         <ProductDetails name="Cotton socks" price="10.90" discountPrice="5.45" imageSrc="cotton-socks.png" />
-         <ProductDetails name="Tennis balls" price="15.50" imageSrc="tennis-balls.png" />
-         <ProductDetails name="Plain T-shirt" price="20.00" imageSrc="plain-t-shirt.png" />
-       </>
-      )
-     }
+        <button onClick={resetCount}>
+          Reset
+        </button>
+     )
+      }
 
+      function App(){
+        const [count, setCount] = React.useState(0);
+      return (
+        <>
+        <CounterButton count={count} setCount={setCount} />
+        <CounterButton count={count} setCount={setCount} />
+        <ResetButton setCount={setCount} />
+        </>
+      )     
+      }
       const container = document.querySelector('.js-container');
       ReactDOM.createRoot(container).render(<App />);
     </script>
   </body>
+
+
 </html>
+
