@@ -13,44 +13,31 @@
 
     <script type="text/babel">
 
-     function CounterButton({ count, setCount }){
-        function ClickedButton(){
-        console.log("clicked!");
-        setCount(
-        count + 1
-        );  
-      }
-     
+       function App() {
+         const [text, setText] = React.useState('');
 
-       return (
-        <button onClick={ClickedButton}>
-          Clicked {count} { count > 0 ? "time":"times"}
-        </button>
-       )
-     }
+         function displayWords(event) {
+           setText(event.target.value);
+         }
 
-     function ResetButton({ setCount }){
-      function resetCount(){
-        setCount(0
-        );
-      }
-      return(
-        <button onClick={resetCount}>
-          Reset
-        </button>
-     )
-      }
+         function ResetClick() {
+           setText('');
+         }
 
-      function App(){
-        const [count, setCount] = React.useState(0);
-      return (
+         function displayExample() {
+            setText('Sano Dany');
+         }
+         
+        return(
         <>
-        <CounterButton count={count} setCount={setCount} />
-        <CounterButton count={count} setCount={setCount} />
-        <ResetButton setCount={setCount} />
+        <input placeholder="Type a name here" onChange={displayWords} value={text} />
+        <button onClick={ResetClick}>Reset</button>
+        <button onClick={displayExample}>Example</button>
+        <p>Hello {text}</p>
         </>
-      )     
-      }
+        )
+       }
+    
       const container = document.querySelector('.js-container');
       ReactDOM.createRoot(container).render(<App />);
     </script>
