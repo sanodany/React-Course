@@ -9,40 +9,34 @@
     <script src="https://unpkg.com/supersimpledev/react.js"></script>
     <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
     <script src="https://unpkg.com/supersimpledev/babel.js"></script>
-    <script src="https://unpkg.com/supersimpledev/dayjs.js"></script>
 
     <script type="text/babel">
+      function App() {
+        const [isButtonOn, setIsButtonOn] = React.useState(true);
 
-       function App() {
-         const [text, setText] = React.useState('');
+        function toggleButtonText() {
+          setIsButtonOn(prev => !prev); // toggle state
+        }
 
-         function displayWords(event) {
-           setText(event.target.value);
-         }
+        return (
+          <button
+            onClick={toggleButtonText}
+            style={{
+              backgroundColor: isButtonOn ? "rgb(25,135,84)" : "red",
+              color: "white",
+              border: "none",
+              padding: "10px 15px",
+              borderRadius: "10px",
+              cursor: "pointer"
+            }}
+          >
+            {isButtonOn ? "ON" : "OFF"}
+          </button>
+        );
+      }
 
-         function ResetClick() {
-           setText('');
-         }
-
-         function displayExample() {
-            setText('Sano Dany');
-         }
-         
-        return(
-        <>
-        <input placeholder="Type a name here" onChange={displayWords} value={text} />
-        <button onClick={ResetClick}>Reset</button>
-        <button onClick={displayExample}>Example</button>
-        <p>Hello {text}</p>
-        </>
-        )
-       }
-    
-      const container = document.querySelector('.js-container');
+      const container = document.querySelector(".js-container");
       ReactDOM.createRoot(container).render(<App />);
     </script>
   </body>
-
-
 </html>
-
