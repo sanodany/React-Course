@@ -2,6 +2,24 @@
 <html>
   <head>
     <title>React Basics</title>
+    <style>
+      .Js-email, .Js-password {
+        padding: 8px 13px;
+        margin-bottom: 5px;
+        border-radius: 5px;
+        border-width: 1px;
+        margin-left: 10px;
+        margin-right: 10px;
+      }
+      .Js-login, .Js-signup {
+        background-color: rgb(0, 123, 255);
+        color:white;
+        border: none;
+        padding: 10px 15px;
+        border-radius: 5px;
+        margin-left: 5px;
+      }
+    </style>
   </head>
   <body>
     <div class="js-container"></div>
@@ -11,28 +29,27 @@
     <script src="https://unpkg.com/supersimpledev/babel.js"></script>
 
     <script type="text/babel">
-      function App() {
-        const [isButtonOn, setIsButtonOn] = React.useState(true);
+      
+      function App(){
 
-        function toggleButtonText() {
-          setIsButtonOn(prev => !prev); // toggle state
+        const [ShowPassword , setShowPassword] = React.useState(false);
+
+        function showPassword(){
+          setShowPassword(prev => !prev)
         }
 
-        return (
-          <button
-            onClick={toggleButtonText}
-            style={{
-              backgroundColor: isButtonOn ? "rgb(25,135,84)" : "red",
-              color: "white",
-              border: "none",
-              padding: "10px 15px",
-              borderRadius: "10px",
-              cursor: "pointer"
-            }}
-          >
-            {isButtonOn ? "ON" : "OFF"}
-          </button>
-        );
+        return(
+          <>
+          <h3>Hello, welcome to my website</h3>
+          <input className="Js-email" placeholder="Email" /> <br />
+          <input className="Js-password" placeholder="Password" type= {ShowPassword ? 'text' : 'password'}  /> 
+          <button onClick= {showPassword}>{ShowPassword?'hide':'show'}</button>
+          <br />
+          <button className="Js-login">Login</button>
+          <button className="Js-signup">Sign Up</button>
+
+          </>
+        )
       }
 
       const container = document.querySelector(".js-container");
