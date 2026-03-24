@@ -26,32 +26,25 @@
 
     <script src="https://unpkg.com/supersimpledev/react.js"></script>
     <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+    <script src="https://unpkg.com/supersimpledev/dayjs.js"></script>
     <script src="https://unpkg.com/supersimpledev/babel.js"></script>
 
     <script type="text/babel">
-      
+    
       function App(){
-
-        const [ShowPassword , setShowPassword] = React.useState(false);
-
-        function showPassword(){
-          setShowPassword(prev => !prev)
-        }
-
-        return(
-          <>
-          <h3>Hello, welcome to my website</h3>
-          <input className="Js-email" placeholder="Email" /> <br />
-          <input className="Js-password" placeholder="Password" type= {ShowPassword ? 'text' : 'password'}  /> 
-          <button onClick= {showPassword}>{ShowPassword?'hide':'show'}</button>
-          <br />
-          <button className="Js-login">Login</button>
-          <button className="Js-signup">Sign Up</button>
-
-          </>
-        )
+       const [time, setTime] = React.useState(dayjs().format('HH : mm : ss'));
+       React.useEffect(() =>{
+        const intervalId = setInterval(()=>{
+        setTime(dayjs().format('HH : mm : ss'))
+        console.log('Run code')
+       },1000);
+       return () => clearInterval(intervalId);
+      },[])
+      return(
+       <p>Current Time: {time} </p>
+      )
       }
-
+    
       const container = document.querySelector(".js-container");
       ReactDOM.createRoot(container).render(<App />);
     </script>
