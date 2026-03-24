@@ -3,21 +3,13 @@
   <head>
     <title>React Basics</title>
     <style>
-      .Js-email, .Js-password {
-        padding: 8px 13px;
-        margin-bottom: 5px;
-        border-radius: 5px;
-        border-width: 1px;
-        margin-left: 10px;
-        margin-right: 10px;
-      }
-      .Js-login, .Js-signup {
-        background-color: rgb(0, 123, 255);
-        color:white;
+      .js-click,.js-auto,.js-reset{
+        background-color: rgb(25,135,84);
+        color: white;
         border: none;
-        padding: 10px 15px;
-        border-radius: 5px;
+        padding: 5px 10px;
         margin-left: 5px;
+        border-radius: 5px;
       }
     </style>
   </head>
@@ -26,24 +18,33 @@
 
     <script src="https://unpkg.com/supersimpledev/react.js"></script>
     <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
-    <script src="https://unpkg.com/supersimpledev/dayjs.js"></script>
     <script src="https://unpkg.com/supersimpledev/babel.js"></script>
 
     <script type="text/babel">
     
       function App(){
-       const [time, setTime] = React.useState(dayjs().format('HH : mm : ss'));
-       React.useEffect(() =>{
+       const [count, setCount] = React.useState(0);
+       const [isAutoOn,setAutoOn] = React.useState(false)
+       const autoButton = React.useRef(null)
+       function autoClick(){
         const intervalId = setInterval(()=>{
-        setTime(dayjs().format('HH : mm : ss'))
-        console.log('Run code')
-       },1000);
-       return () => clearInterval(intervalId);
-      },[])
-      return(
-       <p>Current Time: {time} </p>
-      )
+          const buttonElem = autoButton.current;
+          if(buttonElem){
+            buttonElem.click()
+          }
+          return () => clearInterval(intervalId)
+        },1000
+        )
+       }
+        return(
+        <>  
+        <button ref={autoButton} onClick={()=>{setCount( count + 1)}} className="js-click">Click {count} times</button>
+        <button onClick={()=>{setCount(0)}}className="js-reset">Reset</button>
+        <button onClick={autoClick} className="js-auto">Auto Click</button>
+        </>
+        )
       }
+      
     
       const container = document.querySelector(".js-container");
       ReactDOM.createRoot(container).render(<App />);
