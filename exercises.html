@@ -12,32 +12,27 @@
     <script src="https://unpkg.com/supersimpledev/babel.js"></script>
     <script type="text/babel">
 
-    function ProductDetails({ productName,price }){
-      return(
-            <> 
-              <p>{productName}</p>
-              <p>Price: ${price}</p>
-              <button>Add to Cart</button>
-            </>
-      )
-    }
-
      function App(){
+        const [text,setText] = React.useState('')
+        function displayName(event){
+          setText(event.target.value)
+        }
+        function removeText(){
+          setText('')
+        }
+        function setExample(){
+          setText('Sano Dany')
+        }
         return(
             <>
-              <ProductDetails 
-                productName="Cotton Socks" 
-                price= {10.90} 
-              />
-              <ProductDetails 
-                productName="Tennis balls" 
-                price= {6} 
-              />
-              <ProductDetails 
-                productName="Plain T-shirt" 
-                price= {7.99} 
-              />              
-            </>
+           <input placeholder="Type a name here" 
+            onChange = {displayName}
+            value = {text}
+           />
+           <button onClick={removeText}>Reset</button>
+           <button onClick={setExample}>Example</button>
+           <p> Hello {text}</p>
+           </>
         ) 
      }
 

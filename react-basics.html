@@ -17,10 +17,13 @@
       const shippingCost = 5
       const totalCost = productCost + shippingCost
       const day = dayjs().format('MMMM D')
-      const currentTime = dayjs().format(' HH:mm:ss ')
-      console.log(day)
+      const container = document.querySelector('.js-container');
       const root =  ReactDOM.createRoot(container)
-      const div = (
+      root.render(div);
+    
+      setInterval(()=>{
+        const currentTime = dayjs().format(' HH:mm:ss ')
+        const div = (
        <div>
            <p>Product Cost: ${productCost}</p>
            <p>Shipping Cost : ${shippingCost}</p>
@@ -30,8 +33,8 @@
            <button>Place your order</button>
        </div>
       )
-      const container = document.querySelector('.js-container');
-      root.render(div);
+        root.render(div)
+      },1000)
     </script>
   </body>
 </html>
