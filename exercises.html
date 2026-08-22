@@ -23,9 +23,17 @@
     <script type="text/babel">
 
      function App(){
+          const [isButtonOn,setIsButtonOn] = React.useState("OFF")
+          function toggleBtn(){
+            if (isButtonOn === "OFF"){
+            setIsButtonOn("ON")
+            } else if (isButtonOn === "ON"){
+            setIsButtonOn("OFF")
+            }
+          }
         return(
             <>
-             <button className="button">ON</button>
+             <button className="button" onClick={toggleBtn}>{isButtonOn}</button>
            </>
         ) 
      }
