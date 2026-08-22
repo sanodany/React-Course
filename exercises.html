@@ -3,7 +3,26 @@
   <head>
     <title>React Basics</title>
     <style>
-      
+       body{
+        background-color: rgb(222,222,222);
+        margin-top: 0px;
+        margin-bottom: 0pxgit;
+       }
+        button{
+          background-color: rgb(25,135,84);
+          color: white;
+          border: none;
+          border-radius: 5px;
+          font-size: 15px;
+          padding: 14px 19px;
+          margin-right: 10px;
+        }
+        .app{
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          height: 100vh;
+        }
     </style>
   </head>
   <body>
@@ -16,18 +35,13 @@
     <script type="text/babel">
 
      function App(){
-      const [time,setTime] = React.useState(dayjs().format('HH:mm:ss'))
-      React.useEffect(()=>{
-      let intervalId = setInterval(()=>{
-        setTime(dayjs().format('HH:mm:ss'))
-      },1000)
-      return ()=> clearinterval(intervalId)
-      }
-      ,[])
+        
         return(
-            <>
-            <p>Current time : {time}</p>
-           </>
+            <div className="app">
+            <button>Clicked 0 times</button>
+            <button>Reset</button>
+            <button>Auto Click</button>
+           </div>
         ) 
      }
 
