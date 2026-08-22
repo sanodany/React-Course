@@ -2,6 +2,16 @@
 <html>
   <head>
     <title>React Basics</title>
+    <style>
+       .button {
+          color: white;
+          background-color: rgb(25,135,84);
+          padding: 13px 20px;
+          font-size: 19px;
+          border-radius: 9px;
+          border: none;
+       }
+    </style>
   </head>
   <body>
     <div class="js-container"></div>
@@ -13,25 +23,9 @@
     <script type="text/babel">
 
      function App(){
-        const [text,setText] = React.useState('')
-        function displayName(event){
-          setText(event.target.value)
-        }
-        function removeText(){
-          setText('')
-        }
-        function setExample(){
-          setText('Sano Dany')
-        }
         return(
             <>
-           <input placeholder="Type a name here" 
-            onChange = {displayName}
-            value = {text}
-           />
-           <button onClick={removeText}>Reset</button>
-           <button onClick={setExample}>Example</button>
-           <p> Hello {text}</p>
+             <button className="button">ON</button>
            </>
         ) 
      }
