@@ -3,21 +3,26 @@
   <head>
     <title>React Basics</title>
     <style>
-       .button {
-          color: white;
-          background-color: rgb(25,135,84);
-          padding: 13px 20px;
-          font-size: 19px;
-          border-radius: 9px;
-          border: none;
+       .inputs {
+         padding: 13px 30px;
+         font-size: 18px;
+         margin-bottom: 10px;
+         border-radius: 9px;
+         border-width: 2px;
        }
-       .button1{
-        background-color: rgb(220,53,69);
-        padding: 13px 20px;
-        font-size: 19px;
-        border-radius: 9px;
-        border: none;
+       .btn{
+        padding: 14px 20px;
         color: white;
+        margin-left: 10px;
+        background-color: rgb(0,123,255);
+        border: none;
+        border-radius: 8px;
+        font-size: 16px;
+       }
+       .para{
+        font-size: 22px;
+        font-family: Arial, Helvetica, sans-serif;
+        font-weight: bold;
        }
     </style>
   </head>
@@ -30,23 +35,35 @@
     <script src="https://unpkg.com/supersimpledev/babel.js"></script>
     <script type="text/babel">
 
+    function MyWeb(){
+      const [typeWord,setTypeWord] = React.useState("password")
+      function changeWord(){
+        if(typeWord === "password"){
+        setTypeWord("text")
+        } else if (typeWord === "text"){
+          setTypeWord("password")
+        }
+      }
+      return(
+        <>
+          <p className="para">Hello, welcome to my website</p>
+          <div>
+          <input placeholder="Email" className="inputs" />
+          </div>
+          <div>
+          <input placeholder="Password" className="inputs" type={typeWord} />
+          <button onClick={changeWord}>show</button>
+          </div>
+          <button className="btn">Login</button>
+          <button className="btn">Sign Up</button>
+        </>
+      )
+    }
+
      function App(){
-          const [isButtonOn,setIsButtonOn] = React.useState("OFF")
-          function toggleBtn(){
-            if (isButtonOn === "OFF"){
-            setIsButtonOn("ON")
-            } else if (isButtonOn === "ON"){
-            setIsButtonOn("OFF")
-            }
-          }
         return(
             <>
-             <button 
-             className={isButtonOn === "ON" ? "button" : "button1"} 
-             onClick={toggleBtn}
-             >
-             {isButtonOn}
-             </button>
+             <MyWeb />
            </>
         ) 
      }
