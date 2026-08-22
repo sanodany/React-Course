@@ -6,7 +6,7 @@
        body{
         background-color: rgb(222,222,222);
         margin-top: 0px;
-        margin-bottom: 0pxgit;
+        margin-bottom: 0px;
        }
         button{
           background-color: rgb(25,135,84);
@@ -35,12 +35,27 @@
     <script type="text/babel">
 
      function App(){
-        
+        const [count,setCount] = React.useState(0)
+        const buttonRef = React.useRef(null)
+        function increaseCount(){
+          setCount(count + 1)
+        }
+        function reset(){
+         setCount(0)
+        }      
+        function autoClick(){
+         setInterval(()=>{
+            const buttonElem = buttonRef.current;
+            if (buttonElem) {
+              buttonElem.click();
+            }
+        },1000)
+        }  
         return(
             <div className="app">
-            <button>Clicked 0 times</button>
-            <button>Reset</button>
-            <button>Auto Click</button>
+            <button ref={buttonRef} onClick={increaseCount}>Clicked {count} {count === 1?'time':'times'}</button>
+            <button onClick={reset}>Reset</button>
+            <button onClick={autoClick}>Auto Click</button>
            </div>
         ) 
      }
